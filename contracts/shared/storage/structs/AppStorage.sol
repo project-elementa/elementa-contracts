@@ -7,6 +7,9 @@ import {UintQueueLibrary} from "../../libraries/LibUintQueueLibrary.sol";
 using EnumerableSet for EnumerableSet.UintSet;
 using UintQueueLibrary for UintQueueLibrary.UintQueue;
 
+// struct User {
+//     string userId;
+// }
 
 struct AppStorage {
     mapping(string => address) contracts;
