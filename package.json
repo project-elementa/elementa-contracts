@@ -1,0 +1,27 @@
+{
+  "name": "project-elementa",
+  "version": "0.1.0",
+  "description": "Project-Elementa, growth yours elementa with NFT",
+  "author": {
+    "name": "JangJu Jo",
+    "email": "team.gutalik@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.2.1",
+    "ethers": "^6.13.2",
+    "hardhat": "^2.22.10"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-verify": "^2.0.10",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2",
+    "@typechain/hardhat": "^9.1.0",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "hardhat-deploy": "^0.12.4",
+    "hardhat-shorthand": "^1.0.0"
+  }
+}
