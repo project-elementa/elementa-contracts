@@ -24,6 +24,13 @@ enum EquipmentType {
     Badge
 }
 
+enum AbilityType {
+    Luck
+    // 
+    // 
+    // 
+}
+
 struct User {
     string userId;
     uint nftId;
@@ -42,6 +49,15 @@ struct ElementaNFT {
     address owner;
     uint level;
     uint exp;
+    // uint[10] equipment;
+    
+}
+
+struct ElementaItem {
+    EquipmentType equipmentType;
+    uint itemId;
+    string name;
+    string uri;
 }
 
 struct AppStorage {
