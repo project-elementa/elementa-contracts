@@ -1,13 +1,30 @@
-# Sample Hardhat Project
+# The Elementa
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+Elementa uses NFTs merged from dNFTs and SBTs to support the creation of
+games and communities using merged NFTs from dNFT and SBT.
 
-Try running some of the following tasks:
+# Deployed Contracts
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
+**Kaia - Mainnet(8217)**
+
+```python
+Logic(Diamond) : 0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6
+
+Elementa Token : 0x4B16f003562dcdEa061C8a2b58CCA7fAa5978271
+
+Elementa NFT : 0xE40B0EE4Ef5d1DEE1738418Ae3AEe27FD7C808aC
+
+Elementa Item : 0x5505C56aBd180D13F4bc625B7718b43045425EBb
+```
+
+**Kaia - Testnet(1001)**
+
+```python
+Logic(Diamond) : 0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6
+
+Elementa Token : 0x4B16f003562dcdEa061C8a2b58CCA7fAa5978271
+
+Elementa NFT : 0xE40B0EE4Ef5d1DEE1738418Ae3AEe27FD7C808aC
+
+Elementa Item : 0x5505C56aBd180D13F4bc625B7718b43045425EBb
 ```

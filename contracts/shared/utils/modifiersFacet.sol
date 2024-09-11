@@ -12,12 +12,11 @@ contract modifiersFacet {
         _;
     }
 
-    modifier onlyDelegateEOA() {
-        require(
-            s.isDelegateAddress[msg.sender],
-            "ModifiersFacet: not delegate EOA"
-        );
-        _;
-    }
-    
+    // modifier onlyDelegateEOA() {
+    //     require(
+    //         s.isDelegateAddress[msg.sender],
+    //         "ModifiersFacet: not delegate EOA"
+    //     );
+    //     _;
+    // }
 }

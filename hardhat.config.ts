@@ -34,6 +34,12 @@ const config: HardhatUserConfig = {
         },
       },
       {
+        version: "0.8.10",
+        settings: {
+          optimizer: { enabled: true, runs: 200 },
+        },
+      },
+      {
         version: "0.8.20",
         settings: {
           optimizer: { enabled: true, runs: 200 },
@@ -85,18 +91,16 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
-    cypress: {
+    kaia_mainnet: {
       chainId: 8217,
       url: process.env.KAIA_NODE_MAINNET_ENDPOINT as string,
       accounts: [process.env.ORIGIN_FORGE_KEY as string],
     },
-    baobab: {
+    kaia_testnet: {
       chainId: 1001,
       url: process.env.KLAYTN_NODE_TEST_ENDPOINT as string,
       accounts: [process.env.ORIGIN_FORGE_KEY as string],
     },
-
-    
   },
   namedAccounts: {
     deployer: 0,
@@ -114,7 +118,7 @@ const config: HardhatUserConfig = {
     },
     customChains: [
       {
-        network: "kaia-mainnet",
+        network: "klaytn",
         chainId: 8217,
         urls: {
           apiURL: "https://api-cypress.klaytnscope.com/api",
@@ -122,7 +126,7 @@ const config: HardhatUserConfig = {
         },
       },
       {
-        network: "kaia-testnet",
+        network: "baobab",
         chainId: 1001,
         urls: {
           apiURL: "https://api-baobab.klaytnscope.com/api",

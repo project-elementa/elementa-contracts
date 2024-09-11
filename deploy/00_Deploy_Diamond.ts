@@ -15,19 +15,29 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     facets: [],
   });
 
+  if ((await getChainId()) == "1001") {
+    const testnetABI = JSON.parse(
+      fs.readFileSync(
+        "./deployments/kaia_testnet/elementa-diamond-V1.json",
+        "utf8"
+      )
+    ).abi;
+    return fs.writeFileSync(
+      "./elementa-diamond-V1-TEST.abi",
+      JSON.stringify(testnetABI)
+    );
+  }
   const mainnetABI = JSON.parse(
-    fs.readFileSync("./deployments/kaia-mainnet/elementa-diamond-V1.json", "utf8")
+    fs.readFileSync(
+      "./deployments/kaia_mainnet/elementa-diamond-V1.json",
+      "utf8"
+    )
   ).abi;
 
-  const testnetABI = JSON.parse(
-    fs.readFileSync("./deployments/kaia-testnet/elementa-diamond-V1.json", "utf8")
-  ).abi;
-
-fs.writeFileSync("./elementa-diamond-V1-MAIN.abi", JSON.stringify(mainnetABI));
-fs.writeFileSync("./elementa-diamond-V1-TEST.abi", JSON.stringify(testnetABI));
-  
-
-  
+  return fs.writeFileSync(
+    "./elementa-diamond-V1-MAIN.abi",
+    JSON.stringify(mainnetABI)
+  );
 };
 
 export default func;
