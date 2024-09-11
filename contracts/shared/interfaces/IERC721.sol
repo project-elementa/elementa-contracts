@@ -165,5 +165,5 @@ interface IERC721 {
 
     function safeMint(address to, string memory uri) external returns (uint);
 
-    
+    function diamondMint(address to, uint256 tokenId) external;
 }

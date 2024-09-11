@@ -7,10 +7,43 @@ import {UintQueueLibrary} from "../../libraries/LibUintQueueLibrary.sol";
 using EnumerableSet for EnumerableSet.UintSet;
 using UintQueueLibrary for UintQueueLibrary.UintQueue;
 
-// struct User {
-//     string userId;
-// }
+enum UserType {
+    Wallet,
+    Telegram,
+    Line
+}
+
+struct User {
+    string userId;
+    uint nftId;
+    address reciveAddress;
+    address delegateEOA;
+
+    UserType userType;
+}
+struct DelegateEOA {
+    uint userIndex;
+    string userId;
+    address connectAddress;
+    bool isOwnNFT;
+}
+
+struct ElementaNFT {
+    address owner;
+
+    uint level;
+    uint exp;
+
+}
 
 struct AppStorage {
     mapping(string => address) contracts;
+    mapping(string => User) users;
+    uint globalUserIndex;
+    mapping(string => uint) userIndex;
+
+    // delegate EOA Info
+    mapping(address => DelegateEOA) delegateEOAs;
+
+
 }
