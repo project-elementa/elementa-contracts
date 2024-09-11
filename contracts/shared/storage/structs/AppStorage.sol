@@ -13,12 +13,22 @@ enum UserType {
     Line
 }
 
+enum EquipmentType {
+    Background,
+    Head,
+    Eyes,
+    Mouth,
+    Body,
+    Hand,
+    Pet,
+    Badge
+}
+
 struct User {
     string userId;
     uint nftId;
     address reciveAddress;
     address delegateEOA;
-
     UserType userType;
 }
 struct DelegateEOA {
@@ -30,10 +40,8 @@ struct DelegateEOA {
 
 struct ElementaNFT {
     address owner;
-
     uint level;
     uint exp;
-
 }
 
 struct AppStorage {
@@ -41,9 +49,6 @@ struct AppStorage {
     mapping(string => User) users;
     uint globalUserIndex;
     mapping(string => uint) userIndex;
-
     // delegate EOA Info
     mapping(address => DelegateEOA) delegateEOAs;
-
-
 }
