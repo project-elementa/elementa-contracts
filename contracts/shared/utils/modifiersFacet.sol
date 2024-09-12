@@ -20,4 +20,14 @@ contract modifiersFacet {
         );
         _;
     }
+
+    modifier onlyEOA(address _address) {
+        uint32 size;
+        assembly {
+            size := extcodesize(_address)
+        }
+        
+        require(size == 0, "ModifiersFacet: not EOA");
+        _;
+    }
 }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import {UserType, User} from "../shared/storage/structs/AppStorage.sol";
+import {UserType, User, EquipmentType, ElementaItem} from "../shared/storage/structs/AppStorage.sol";
 import {modifiersFacet} from "../shared/utils/modifiersFacet.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
@@ -29,35 +29,76 @@ contract adminFacet is modifiersFacet {
     function admin_registerMessengerUser(
         UserType _type,
         string memory _userId,
-        address _delegateEOA
+        address _delegateEOA,
+        string memory _refferalId
     ) external onlyAdmin {
         string memory userId = lower(_userId);
+
+        require(
+            s.users[userId].delegateEOA == address(0),
+            "admin_registerMessengerUser: user already registered"
+        );
 
         s.users[userId].userId = userId;
         s.users[userId].userType = _type;
         s.users[userId].delegateEOA = _delegateEOA;
+        s.users[userId].refferalId = _refferalId;
+        s.users[_refferalId].refferalCount++;
+
         s.userIndex[userId] = s.globalUserIndex;
+
+        s.elementaNFTs[s.globalUserIndex].level = 1;
+        s.elementaNFTs[s.globalUserIndex].heartMax = 5;
+        s.elementaNFTs[s.globalUserIndex].heartPoint = 5;
+        s.elementaNFTs[s.globalUserIndex].updateHeartTime = block.timestamp;
+        s.elementaNFTs[s.globalUserIndex].delegateAddress = _delegateEOA;
+
+        s.delegateEOAs[_delegateEOA].userIndex = s.globalUserIndex;
+        s.delegateEOAs[_delegateEOA].userId = userId;
+
+        s.levelInfos[1].levelUserCount++;
+
+        s.isDelegateEOA[_delegateEOA] = true;
 
         emit RegisterUser(_type, userId, s.userIndex[userId]);
 
         s.globalUserIndex++;
     }
 
-    function admin_registerWalletUser(address _delegateEOA) external onlyAdmin {
-        string memory userId = lower(Strings.toHexString(msg.sender));
+    // function admin_registerWalletUser(address _delegateEOA) external onlyAdmin {
+    //     string memory userId = lower(Strings.toHexString(msg.sender));
 
-        s.users[userId].userId = userId;
-        s.users[userId].userType = UserType.Wallet;
-        s.users[userId].delegateEOA = _delegateEOA;
-        s.userIndex[userId] = s.globalUserIndex;
+    //     s.users[userId].userId = userId;
+    //     s.users[userId].userType = UserType.Wallet;
+    //     s.users[userId].delegateEOA = _delegateEOA;
+    //     s.userIndex[userId] = s.globalUserIndex;
 
-        emit RegisterUser(UserType.Wallet, userId, s.userIndex[userId]);
+    //     emit RegisterUser(UserType.Wallet, userId, s.userIndex[userId]);
 
-        s.globalUserIndex++;
-    }
+    //     s.globalUserIndex++;
+    // }
 
     function admin_setGlobalUserIndex(uint _index) external onlyAdmin {
         s.globalUserIndex = _index;
+    }
+
+    function admin_setEquipment(
+        EquipmentType _itemType,
+        uint _itemId,
+        string memory _name,
+        bytes memory _svgUri
+    ) external onlyAdmin {
+        s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
+        s.elementaItems[_itemType][_itemId].itemId = _itemId;
+        s.elementaItems[_itemType][_itemId].name = _name;
+        s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
+    }
+
+    function admin_getEquipment(
+        EquipmentType _itemType,
+        uint _itemId
+    ) external view returns (ElementaItem memory) {
+        return s.elementaItems[_itemType][_itemId];
     }
 
     //
