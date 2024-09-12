@@ -46,6 +46,7 @@ struct ElementaNFT {
     uint elementaPoint;
 
     // uint[10] _gap;
+    // uint[10] equipmentItem;
 }
 struct ElementaItem {
     EquipmentType equipmentType;
@@ -69,4 +70,6 @@ struct AppStorage {
     //
     // equipmentType => nftId => item info
     mapping(EquipmentType => mapping(uint => ElementaItem)) elementaItems;
+    // 
+    
 }

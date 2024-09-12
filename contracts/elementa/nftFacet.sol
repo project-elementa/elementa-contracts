@@ -47,9 +47,8 @@ contract nftFacet is modifiersFacet {
                     // character
                     // ...here
 
-                    '<image x="50%" y="50%" width="50%" height="50%" href="https://i.imgur.com/W718ova.png" transform="translate(-65, -80)" />',
-                    // '<image x="50%" y="50%" width="50%" height="50%" href="https://static.vecteezy.com/system/resources/previews/024/732/434/large_2x/3d-dragon-egg-model-generative-ai-free-png.png" transform="translate(-65, -80)" />',
-
+                    // '<image x="50%" y="50%" width="50%" height="50%" href="https://i.imgur.com/W718ova.png" transform="translate(-65, -80)" />',
+                    '<image x="50%" y="50%" width="50%" height="50%" href="https://static.vecteezy.com/system/resources/previews/024/732/434/large_2x/3d-dragon-egg-model-generative-ai-free-png.png" transform="translate(-65, -80)" />',
                     //
                     // text info
                     '<text x="5%" y="85%" font-family="Arial" font-size="15" fill="#000" text-anchor="start">',
