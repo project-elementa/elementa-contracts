@@ -31,8 +31,9 @@ contract ElementaNFT is
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     uint256 private _nextTokenId;
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
-    address public constant DIAMOND = address(0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6);
-    
+    address public constant DIAMOND =
+        address(0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6);
+
     event TraitMetadataURIUpdated();
 
     /// @custom:oz-upgrades-unsafe-allow constructor
@@ -165,6 +166,10 @@ contract ElementaNFT is
         address to,
         uint256 tokenId
     ) external onlyRole(MINTER_ROLE) {
-        _safeMint(to, tokenId);        
+        _safeMint(to, tokenId);
+    }
+
+    function _update_metadata_uri() external onlyRole(MINTER_ROLE) {
+        emit TraitMetadataURIUpdated();
     }
 }
