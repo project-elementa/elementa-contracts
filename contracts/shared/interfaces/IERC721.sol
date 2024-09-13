@@ -167,5 +167,5 @@ interface IERC721 {
 
     function diamondMint(address to, uint256 tokenId) external;
 
-    function _update_metadata_uri() external;
+    function _update_metadata_uri(uint _tokenId) external;
 }

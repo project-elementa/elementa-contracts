@@ -560,6 +560,12 @@
 			},
 			{
 				"anonymous": false,
+				"inputs": [],
+				"name": "TraitMetadataURIUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
 				"inputs": [
 					{
 						"indexed": true,
@@ -698,6 +704,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "_update_metadata_uri",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -2164,11 +2183,11 @@
 			]
 		},
 		"contracts/tokens/ElementaNFT.sol": {
-			"keccak256": "0x870a35aa70e2e0a355194d1bf6d14077e4870e12408197e77397582550580bdc",
+			"keccak256": "0xaf37b3c15c5d6a20dedabd665b133bb39d951a9e20d28432debcd49914b09a1c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c6e8b77462b646d74e410dd443ead4e76b5fc6afbe21f133494f0f6ebbf5a807",
-				"dweb:/ipfs/QmRxK2xZuZwPY5i3boExfDh3NvuDko22PCjUW7Qz7TyYh8"
+				"bzz-raw://916a691d8ac9a0371fefb5db12bcc6f79cc70202ca33c0154e04bf756d3476bd",
+				"dweb:/ipfs/QmSMAGcvDyaLtTGrqqNaWZAaawjgRZdNvQwnoMucBZAEX5"
 			]
 		}
 	},
