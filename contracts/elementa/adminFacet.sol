@@ -1,12 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.22;
 
-import {AppStorage} from "../shared/storage/structs/AppStorage.sol";
+import {UserType, User, EquipmentType, ElementaItem} from "../shared/storage/structs/AppStorage.sol";
 import {modifiersFacet} from "../shared/utils/modifiersFacet.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
 contract adminFacet is modifiersFacet {
+    using Strings for *;
 
-    function setContract(string memory _name, address _address) external onlyAdmin {
+    event RegisterUser(
+        UserType indexed _type,
+        string indexed userId,
+        uint indexed userIndex
+    );
+
+    function setContract(
+        string memory _name,
+        address _address
+    ) external onlyAdmin {
         s.contracts[_name] = _address;
     }
 
@@ -14,5 +25,100 @@ contract adminFacet is modifiersFacet {
         return s.contracts[_name];
     }
 
-    
+    // User Registration
+    function admin_registerMessengerUser(
+        UserType _type,
+        string memory _userId,
+        address _delegateEOA,
+        string memory _refferalId
+    ) external onlyAdmin {
+        string memory userId = lower(_userId);
+
+        require(
+            s.users[userId].delegateEOA == address(0),
+            "admin_registerMessengerUser: user already registered"
+        );
+
+        s.users[userId].userId = userId;
+        s.users[userId].userType = _type;
+        s.users[userId].delegateEOA = _delegateEOA;
+        s.users[userId].refferalId = _refferalId;
+        s.users[_refferalId].refferalCount++;
+
+        s.userIndex[userId] = s.globalUserIndex;
+
+        s.elementaNFTs[s.globalUserIndex].level = 1;
+        s.elementaNFTs[s.globalUserIndex].heartMax = 5;
+        s.elementaNFTs[s.globalUserIndex].heartPoint = 5;
+        s.elementaNFTs[s.globalUserIndex].updateHeartTime = block.timestamp;
+        s.elementaNFTs[s.globalUserIndex].delegateAddress = _delegateEOA;
+
+        s.delegateEOAs[_delegateEOA].userIndex = s.globalUserIndex;
+        s.delegateEOAs[_delegateEOA].userId = userId;
+
+        s.levelInfos[1].levelUserCount++;
+
+        s.isDelegateEOA[_delegateEOA] = true;
+
+        emit RegisterUser(_type, userId, s.userIndex[userId]);
+
+        s.globalUserIndex++;
+    }
+
+    // function admin_registerWalletUser(address _delegateEOA) external onlyAdmin {
+    //     string memory userId = lower(Strings.toHexString(msg.sender));
+
+    //     s.users[userId].userId = userId;
+    //     s.users[userId].userType = UserType.Wallet;
+    //     s.users[userId].delegateEOA = _delegateEOA;
+    //     s.userIndex[userId] = s.globalUserIndex;
+
+    //     emit RegisterUser(UserType.Wallet, userId, s.userIndex[userId]);
+
+    //     s.globalUserIndex++;
+    // }
+
+    function admin_setGlobalUserIndex(uint _index) external onlyAdmin {
+        s.globalUserIndex = _index;
+    }
+
+    function admin_setEquipment(
+        EquipmentType _itemType,
+        uint _itemId,
+        string memory _name,
+        bytes memory _svgUri
+    ) external onlyAdmin {
+        s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
+        s.elementaItems[_itemType][_itemId].itemId = _itemId;
+        s.elementaItems[_itemType][_itemId].name = _name;
+        s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
+    }
+
+    function admin_getEquipment(
+        EquipmentType _itemType,
+        uint _itemId
+    ) external view returns (ElementaItem memory) {
+        return s.elementaItems[_itemType][_itemId];
+    }
+
+    //
+    //
+    //
+    //
+    // lower functions
+    function _lower(bytes1 _b1) private pure returns (bytes1) {
+        if (_b1 >= 0x41 && _b1 <= 0x5A) {
+            return bytes1(uint8(_b1) + 32);
+        }
+
+        return _b1;
+    }
+
+    function lower(string memory _base) internal pure returns (string memory) {
+        bytes memory _baseBytes = bytes(_base);
+        for (uint i = 0; i < _baseBytes.length; i++) {
+            _baseBytes[i] = _lower(_baseBytes[i]);
+        }
+        return string(_baseBytes);
+    }
 }

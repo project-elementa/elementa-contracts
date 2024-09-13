@@ -25,6 +25,7 @@ const config: HardhatUserConfig = {
         version: "0.8.0",
         settings: {
           optimizer: { enabled: true, runs: 200 },
+          viaIR: true,
         },
       },
       {
@@ -37,24 +38,28 @@ const config: HardhatUserConfig = {
         version: "0.8.10",
         settings: {
           optimizer: { enabled: true, runs: 200 },
+          viaIR: true,
         },
       },
       {
         version: "0.8.20",
         settings: {
           optimizer: { enabled: true, runs: 200 },
+          viaIR: true,
         },
       },
       {
         version: "0.8.22",
         settings: {
           optimizer: { enabled: true, runs: 200 },
+          viaIR: true,
         },
       },
       {
         version: "0.8.24",
         settings: {
           optimizer: { enabled: true, runs: 200 },
+          viaIR: true,
         },
       },
       {

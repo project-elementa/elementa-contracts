@@ -23,7 +23,8 @@ contract ElementaItem is
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
-
+    address public constant DIAMOND = address(0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6);
+    
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();

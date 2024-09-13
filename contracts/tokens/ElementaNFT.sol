@@ -15,6 +15,10 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
+interface IElemetaDiamond {
+    function nft_getUri(uint _tokenId) external view returns (string memory);
+}
+
 contract ElementaNFT is
     Initializable,
     ERC721Upgradeable,
@@ -31,6 +35,10 @@ contract ElementaNFT is
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     uint256 private _nextTokenId;
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
+    address public constant DIAMOND =
+        address(0x2E260E9FD29C7dA0a3345765b1D3fF14Ab339ea6);
+
+    event TraitMetadataURIUpdated();
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -90,7 +98,6 @@ contract ElementaNFT is
         address newImplementation
     ) internal override onlyRole(UPGRADER_ROLE) {}
 
-    // The following functions are overrides required by Solidity.
 
     function _update(
         address to,
@@ -106,14 +113,14 @@ contract ElementaNFT is
         )
         returns (address)
     {
-        address from = _ownerOf(tokenId);
-        if (from != address(0)) {
-            revert("Soulbound: Transfer failed");
-        }
+        // address from = _ownerOf(tokenId);
+        // if (from != address(0)) {
+        //     revert("Soulbound: Transfer failed");
+        // }
 
-        if (balanceOf(to) > 0) {
-            revert("Soulbound: Transfer failed");
-        }
+        // if (balanceOf(to) > 0) {
+        //     revert("Soulbound: Transfer failed");
+        // }
         return super._update(to, tokenId, auth);
     }
 
@@ -139,7 +146,8 @@ contract ElementaNFT is
         override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
         returns (string memory)
     {
-        return super.tokenURI(tokenId);
+        IElemetaDiamond diamond = IElemetaDiamond(DIAMOND);
+        return diamond.nft_getUri(tokenId);
     }
 
     function supportsInterface(
@@ -156,5 +164,21 @@ contract ElementaNFT is
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function diamondMint(
+        address to,
+        uint256 tokenId
+    ) external onlyRole(MINTER_ROLE) {
+        _safeMint(to, tokenId);
+    }
+
+    function _update_metadata_uri(
+        uint _tokenId
+    ) external onlyRole(MINTER_ROLE) {
+        IElemetaDiamond diamond = IElemetaDiamond(DIAMOND);
+
+        _setTokenURI(_tokenId, diamond.nft_getUri(_tokenId));
+        emit TraitMetadataURIUpdated();
     }
 }

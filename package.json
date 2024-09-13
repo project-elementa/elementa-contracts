@@ -22,6 +22,7 @@
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
     "hardhat-deploy": "^0.12.4",
-    "hardhat-shorthand": "^1.0.0"
+    "hardhat-shorthand": "^1.0.0",
+    "solady": "0.0.137"
   }
 }
