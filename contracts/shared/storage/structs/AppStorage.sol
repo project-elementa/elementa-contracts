@@ -67,9 +67,12 @@ struct AppStorage {
     mapping(uint => ElementaNFT) elementaNFTs;
     mapping(uint => levelInfo) levelInfos;
     mapping(address => bool) isDelegateEOA;
-    //
-    // equipmentType => nftId => item info
-    mapping(EquipmentType => mapping(uint => ElementaItem)) elementaItems;
+    
     // 
+    // items info
+    mapping(uint => ElementaItem) elementaItems;
+    // 
+    // nftId => equipmentType => item info
+    mapping(uint => uint[10]) equipItems;
     
 }
