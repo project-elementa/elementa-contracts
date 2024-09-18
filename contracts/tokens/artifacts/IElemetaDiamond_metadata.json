@@ -46,7 +46,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -397,11 +397,11 @@
 			]
 		},
 		"contracts/tokens/ElementaNFT.sol": {
-			"keccak256": "0xaf37b3c15c5d6a20dedabd665b133bb39d951a9e20d28432debcd49914b09a1c",
+			"keccak256": "0x676db6d15e5d9265dbf77832e5f0eb1fdb85837472c83d0ec8256b3c07bdcc50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://916a691d8ac9a0371fefb5db12bcc6f79cc70202ca33c0154e04bf756d3476bd",
-				"dweb:/ipfs/QmSMAGcvDyaLtTGrqqNaWZAaawjgRZdNvQwnoMucBZAEX5"
+				"bzz-raw://9de20c45198eaaada960851447c14619b55f4e0879fae743b0cffd374366d15e",
+				"dweb:/ipfs/Qme5HqUXEDJ35JCa6eC5QXkW9dE6Ly3MD5dchvV47vWKDk"
 			]
 		}
 	},

@@ -82,24 +82,24 @@ contract adminFacet is modifiersFacet {
         s.globalUserIndex = _index;
     }
 
-    function admin_setEquipment(
-        EquipmentType _itemType,
-        uint _itemId,
-        string memory _name,
-        bytes memory _svgUri
-    ) external onlyAdmin {
-        s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
-        s.elementaItems[_itemType][_itemId].itemId = _itemId;
-        s.elementaItems[_itemType][_itemId].name = _name;
-        s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
-    }
+    // function admin_setEquipment(
+    //     EquipmentType _itemType,
+    //     uint _itemId,
+    //     string memory _name,
+    //     bytes memory _svgUri
+    // ) external onlyAdmin {
+    //     s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
+    //     s.elementaItems[_itemType][_itemId].itemId = _itemId;
+    //     s.elementaItems[_itemType][_itemId].name = _name;
+    //     s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
+    // }
 
-    function admin_getEquipment(
-        EquipmentType _itemType,
-        uint _itemId
-    ) external view returns (ElementaItem memory) {
-        return s.elementaItems[_itemType][_itemId];
-    }
+    // function admin_getEquipment(
+    //     EquipmentType _itemType,
+    //     uint _itemId
+    // ) external view returns (ElementaItem memory) {
+    //     return s.elementaItems[_itemType][_itemId];
+    // }
 
     //
     //

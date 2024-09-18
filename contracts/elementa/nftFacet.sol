@@ -11,6 +11,7 @@ import {json} from "../shared/libraries/json.sol";
 import {Solarray} from "../shared/libraries/Solarray.sol";
 
 import {LibString} from "solady/src/utils/LibString.sol";
+
 contract nftFacet is modifiersFacet {
     using svg for *;
     using Metadata for *;
@@ -38,39 +39,32 @@ contract nftFacet is modifiersFacet {
                     json.property(
                         "image",
                         Metadata.base64SvgDataURI(_generateSVG(_tokenId))
-                    ),
-                    json.property(
-                        "attributes",
-                        json.arrayOf(
-                            Solarray.strings(
-                                Metadata.attribute(
-                                    "Level",
-                                    LibString.toString(
-                                        s.elementaNFTs[_tokenId].level
-                                    ),
-                                    DisplayType.BoostNumber
-                                ),
-                                Metadata.attribute(
-                                    "Heart Point",
-                                    LibString.toString(
-                                        s.elementaNFTs[_tokenId].heartPoint
-                                    ),
-                                    DisplayType.Number
-                                )
-                            )
-                        )
                     )
+                    
                 )
             )
         );
 
         return metaData;
     }
+    function getImage(string memory id, string memory base64Data) internal pure returns (string memory) {
+    return string.concat(
+        svg.el(
+            "image",
+            string.concat(
+                svg.prop("id", id),
+                svg.prop("width", "50%"),
+                svg.prop("height", "50%"),
+                svg.prop("transform", "translate(-.04 .08)"),
+                svg.prop("href", base64Data)  // 'href' 속성으로 변경
+            ),
+            ""
+        )
+    );
+}
 
     function _generateSVG(uint _tokenId) public view returns (string memory) {
-        // bytes memory outline = s.elementaItems[EquipmentType.Outline][4].svgUri;
-        // bytes memory background = s
-        // .elementaItems[EquipmentType.Outline][4].svgUri;
+        
         return
             string.concat(
                 svg.top(
@@ -177,6 +171,7 @@ contract nftFacet is modifiersFacet {
                                 )
                             )
                         ),
+
                         // Defining background and border
                         svg.rect(
                             string.concat(
@@ -188,7 +183,20 @@ contract nftFacet is modifiersFacet {
                             ),
                             ""
                         ),
-                        // Adding dynamic text information
+                     
+
+                     svg.el(
+                "g",
+                svg.prop("transform", "translate(62.5, 55.5)"),  // (250 - 64) / 2 = 93, 이미지를 중앙으로 위치
+                string.concat(
+                    getImage("_charOutline_xA0_image", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAACh0lEQVR4nO2bMW/TQBSAv5QgUTXJiLJ5YiFTl4xIwIDIws7KwL/I0N/AylrxC9igUsduDO2CGLohj21BQkI1Az3LNk6a+t57vqD3TVFsOXffvffOOZ8HJEY2nRfN786/nww0f1P14lWanWt2rHr86OwQgFcf3gJwcXCpKmJH68JVsum8mCzHTJbjsoNtI350dlgeb7uGVvuGWhdu4+rhb+BvZ58+fr3yvOef3wAwMmqeqYQqNyL+SYFSQF5vmmY6mNSEEMqT5biMhk/P3pfRsPNut3Z+VYB2PQCjmhA6cXFwySgfMsqH5YgHwvdNARaYzQ5QL26T5bh2bFWHtaMAjCVUCTNGwCLsV2GSDqnjEugpHW678bFOC3MJm975WYrobXY4Pf/Yes4sW5SfrUSY/4Fa1fkmljLUJWwy+uuYZQsG8PXn9a/9PP/yQ7RxN5jNDl0EBO7dHz56+eLJlWBzaqhGwl1TYB2zbMFo7wGn347F26wiQbLzVbTqhN8soRAJWlFQJUSEVDSISsim80Kz801m2UJEhMjKkub6nwWiNcEyCgLZdF7EDsJWF0Yp6dH5ZFEIbyO2UG51JEjhEohIhxTSoEnXtDCNhOsizZnUVMKgv8XttdhKSNNBt6FJsR4EutQFnx1wCYBLAFwC4BIAlwC4BMAlAC4BcAmASwAiJVSfCKVA1/Z0WnIPf05SXGrvss7o6YCAhFRSIqYdIpGQioiu/BfpEDsIUc8iUyiQEk+oxSKhj5SQ+k2Rpc/YzVldkNyjIL4/IXy22KQBCUoIaK5GS+9SAeXZQbpOaNUdky18EBcV2rtbTd+BCmwipDnqW/8iGMTdS2z93uY2NhHS16tAjuM4DvAHUwT634NLx7kAAAAASUVORK5CYII="),
+                    getImage("_charAmr_xA0_image", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAA5ElEQVR4nO3WsQ3CMBCF4UuWSCQKM4VbxmAYaLIALJAZaCmggYICUaWnQKIIJXWUHE2ygG1igv6vj+/07mxFBAAAAAAAAAAAAAAAAAAAAAAwbSa3anKrsfsIIY3dQCg+Q/EO4Re2wbcHrxDKXRmkiRAe9TVx/Xby1yHEALxDGLYhtsOlcg4j2CbEuBJDTd9BBAlhbmYhjolW2zmEJHV+h77GtSfnELRTbZtORETW20Ikkcb1LA/P1aboRETaphVVfY9a/Xiuliaztcmtmsze96fbYtQGeia3r/5HqYtRHwAA4O99AKTCO8eSAA8eAAAAAElFTkSuQmCC"),
+                    getImage("_leg_xA0_image", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAfUlEQVR4nO3UsQ3CMBAF0B+moMsWjO0l0rEFXbaABksBhEik2ID0XmfrdKe74icAAAAAAAAAAAAAAAAAAPBPhl6DxuPpunxf5vPb2Vtq93Bo2fxZmUrKVJK8LlrV/2Vta12PUH1artfy1VeO8GscIR2DMXnMgbXB2DoUubsB+bMfnf2sWikAAAAASUVORK5CYII="),
+                    getImage("_eyes_xA0_image", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAeklEQVR4nO3UsQ3CMBBA0YAYwhGFEUOYKvtLbEHHCiksU5kGAUpkRyneq665f648DAAAAAAAAADQy6FnPIZU6vx43lffatXZXAypxJBKlfNc/m99ynl+N2qz9VuPrYPfXM/TpntLnHofuIy3XTR+8ScAAAAAAAAAQFcvmTMvYSxs+bMAAAAASUVORK5CYII="),
+                    getImage("_mouth_xA0_image", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAASElEQVR4nO3PoQ3AIAAEQLoFji26v2YLHFuARWBICk3InXzz/yEAAAAAAAAAAAC3S/FtK/lOz+nC0exwqfnXTQAAAAAAAABf6ftjBtraAp8tAAAAAElFTkSuQmCC")
+                )
+            ),
+              
                         svg.text(
                             string.concat(
                                 svg.prop("x", "5%"),
