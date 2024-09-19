@@ -55,6 +55,18 @@ struct ElementaItem {
     bytes svgUri;
 }
 
+struct GradeOutline {
+    string animateColors;
+    string stopColor;
+    string animateDuration;
+}
+
+// struct BackGround {
+//     string animateColors;
+//     string stopColor;
+//     string animateDuration;
+// }
+
 struct AppStorage {
     mapping(string => address) contracts;
     mapping(string => User) users;
@@ -67,12 +79,13 @@ struct AppStorage {
     mapping(uint => ElementaNFT) elementaNFTs;
     mapping(uint => levelInfo) levelInfos;
     mapping(address => bool) isDelegateEOA;
-    
-    // 
+    //
     // items info
     mapping(uint => ElementaItem) elementaItems;
-    // 
+    //
     // nftId => equipmentType => item info
     mapping(uint => uint[10]) equipItems;
-    
+    // SVGs
+    mapping(uint => GradeOutline) gradeOutlines;
+    // mapping(uint => BackGround) backgrounds;
 }

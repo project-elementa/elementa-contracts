@@ -78,8 +78,26 @@ contract adminFacet is modifiersFacet {
     //     s.globalUserIndex++;
     // }
 
-    function admin_setGlobalUserIndex(uint _index) external onlyAdmin {
-        s.globalUserIndex = _index;
+    function admin_setBackgroundSvg(
+        uint _class,
+        string memory _animateColors,
+        string memory _stopColor,
+        string memory _animateDuration
+    ) external onlyAdmin {
+        s.backgrounds[_class].animateColors = _animateColors;
+        s.backgrounds[_class].stopColor = _stopColor;
+        s.backgrounds[_class].animateDuration = _animateDuration;
+    }
+
+    function admin_setTierOutlineSvg(
+        uint _class,
+        string memory _animateColors,
+        string memory _stopColor,
+        string memory _animateDuration
+    ) external onlyAdmin {
+        s.tierOutlines[_class].animateColors = _animateColors;
+        s.tierOutlines[_class].stopColor = _stopColor;
+        s.tierOutlines[_class].animateDuration = _animateDuration;
     }
 
     // function admin_setEquipment(
