@@ -52,20 +52,13 @@ struct ElementaItem {
     EquipmentType equipmentType;
     uint itemId;
     string name;
-    bytes svgUri;
-}
-
-struct GradeOutline {
+    string svgUri;
     string animateColors;
     string stopColor;
     string animateDuration;
 }
 
-// struct BackGround {
-//     string animateColors;
-//     string stopColor;
-//     string animateDuration;
-// }
+
 
 struct AppStorage {
     mapping(string => address) contracts;
@@ -83,9 +76,7 @@ struct AppStorage {
     // items info
     mapping(uint => ElementaItem) elementaItems;
     //
-    // nftId => equipmentType => item info
+    // nftId => item info
     mapping(uint => uint[10]) equipItems;
-    // SVGs
-    mapping(uint => GradeOutline) gradeOutlines;
-    // mapping(uint => BackGround) backgrounds;
+    
 }
