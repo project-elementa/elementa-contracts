@@ -65,6 +65,12 @@ contract adminFacet is modifiersFacet {
         s.globalUserIndex++;
     }
 
+    function admin_vrfSettings(bytes32 _keyHash, uint64 _accId, uint32 _callbackGasLimit) external onlyAdmin {
+        s.oraklVRF.keyHash = _keyHash;
+        s.oraklVRF.accId = _accId;
+        s.oraklVRF.callbackGasLimit = _callbackGasLimit;
+    }
+
     // function admin_registerWalletUser(address _delegateEOA) external onlyAdmin {
     //     string memory userId = lower(Strings.toHexString(msg.sender));
 

@@ -52,20 +52,23 @@ struct ElementaItem {
     EquipmentType equipmentType;
     uint itemId;
     string name;
-    bytes svgUri;
-}
-
-struct GradeOutline {
+    string svgUri;
     string animateColors;
     string stopColor;
     string animateDuration;
 }
 
-// struct BackGround {
-//     string animateColors;
-//     string stopColor;
-//     string animateDuration;
-// }
+struct ElementaToken {
+    uint phaseMaxSupply;
+    uint mintedSupply;
+}
+
+struct OraklVRF {
+    bytes32 keyHash;
+    uint64 accId;
+    uint32 callbackGasLimit;
+    uint32 numWords;
+}
 
 struct AppStorage {
     mapping(string => address) contracts;
@@ -83,8 +86,12 @@ struct AppStorage {
     // items info
     mapping(uint => ElementaItem) elementaItems;
     //
-    // nftId => equipmentType => item info
+    // nftId => item info
     mapping(uint => uint[10]) equipItems;
+    mapping(uint => ElementaToken) elementaToken;
+    // Orakl VRF
+    OraklVRF oraklVRF;
+
     // SVGs
     // mapping(uint => GradeOutline) gradeOutlines;
     // mapping(uint => BackGround) backgrounds;

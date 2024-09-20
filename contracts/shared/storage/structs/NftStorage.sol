@@ -2,7 +2,8 @@
 // pragma solidity ^0.8.0;
 
 enum EquipmentType {
-    Outline, // grade
+    None,
+    TierOutline, // grade
     Background,
     Head,
     Eyes,
