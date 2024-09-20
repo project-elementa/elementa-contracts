@@ -4,8 +4,8 @@ import {modifiersFacet} from "../shared/utils/modifiersFacet.sol";
 import {IERC721} from "../shared/interfaces/IERC721.sol";
 import {User, ElementaNFT, DelegateEOA} from "../shared/storage/structs/AppStorage.sol";
 import {UintQueueLibrary} from "../shared/libraries/LibUintQueueLibrary.sol";
-// import {LibVRF} from "../shared/libraries/LibVRF.sol";
-// import {IOraklVRF} from "../shared/interfaces/IOraklVRF.sol";
+import {LibVRF} from "../shared/libraries/LibVRF.sol";
+import {IOraklVRF} from "../shared/interfaces/IOraklVRF.sol";
 
 contract botMiniGameFacet is modifiersFacet {
     using UintQueueLibrary for UintQueueLibrary.UintQueue;
@@ -77,4 +77,14 @@ contract botMiniGameFacet is modifiersFacet {
         ElementaNFT storage nft = s.elementaNFTs[_nftId];
         nft.elementaPoint += _point;
     }
+
+    function testCalling(uint32 _numbWords) public returns(uint[] memory){
+        return LibVRF.reqVRF(_numbWords);
+
+    }
+
+    function getRandomValues() public view returns(uint[] memory){
+        return LibVRF.resVRF();
+    }
+
 }

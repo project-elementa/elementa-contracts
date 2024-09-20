@@ -48,6 +48,11 @@ struct ElementaNFT {
     // uint[10] _gap;
     // uint[10] equipmentItem;
 }
+
+struct MysteryBox {
+    uint boxId;
+    uint uniqValue;
+}
 struct ElementaItem {
     EquipmentType equipmentType;
     uint itemId;
@@ -92,6 +97,9 @@ struct AppStorage {
     // Orakl VRF
     OraklVRF oraklVRF;
 
+    mapping(uint => MysteryBox) mysteryBoxes;
+
+    
     // SVGs
     // mapping(uint => GradeOutline) gradeOutlines;
     // mapping(uint => BackGround) backgrounds;

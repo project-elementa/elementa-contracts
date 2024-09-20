@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.27+commit.40a35a09"
 	},
 	"language": "Solidity",
 	"output": {
@@ -58,16 +58,6 @@
 						"internalType": "uint32",
 						"name": "numWords",
 						"type": "uint32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_min",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_max",
-						"type": "uint256"
 					}
 				],
 				"name": "VRFCall",
@@ -83,28 +73,28 @@
 			},
 			{
 				"inputs": [],
-				"name": "max",
+				"name": "diamondContract",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "min",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "_diamondAddress",
+						"type": "address"
 					}
 				],
-				"stateMutability": "view",
+				"name": "editDiamond",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -160,6 +150,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "sOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -209,7 +212,7 @@
 		"compilationTarget": {
 			"contracts/shared/utils/oraklVRF.sol": "VRFConsumer"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -254,11 +257,11 @@
 			]
 		},
 		"contracts/shared/utils/oraklVRF.sol": {
-			"keccak256": "0x0d3c1bbc810d2d475e2ddecd561e787b832855d065930cfb6a86e0bb4d9cb5ad",
+			"keccak256": "0x31983c4f155c566e342c3b5bfab032aaa6e766bbe91ea7c025e646362ccb56f1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d44e4e40f11f9ac00c9958b3907d05fbd433b869529d98d8a50fbb5668742d41",
-				"dweb:/ipfs/QmTG5x6nqg4oXmtRHABQ38uKVNxXTBfxM9fpUiXz8yrhij"
+				"bzz-raw://ae06dc15b9012fafd27a0ddeb50467b7ce4df166f1f8051508c817a553b7efc5",
+				"dweb:/ipfs/QmdTpm7ZD38ut5Z2xRe6s76J1YDn78MB8y3PzePemyaSDH"
 			]
 		}
 	},
