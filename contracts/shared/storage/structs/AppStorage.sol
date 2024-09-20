@@ -86,6 +86,6 @@ struct AppStorage {
     // nftId => equipmentType => item info
     mapping(uint => uint[10]) equipItems;
     // SVGs
-    mapping(uint => GradeOutline) gradeOutlines;
+    // mapping(uint => GradeOutline) gradeOutlines;
     // mapping(uint => BackGround) backgrounds;
 }

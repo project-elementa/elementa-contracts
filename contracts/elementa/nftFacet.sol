@@ -17,7 +17,7 @@ contract nftFacet is modifiersFacet {
     using Metadata for *;
 
     function nft_getUri(uint _tokenId) external view returns (string memory) {
-     string memory metaData = Metadata.base64JsonDataURI(
+        string memory metaData = Metadata.base64JsonDataURI(
             json.objectOf(
                 Solarray.strings(
                     json.property(
@@ -42,7 +42,6 @@ contract nftFacet is modifiersFacet {
         return metaData;
     }
 
-    
     function getImage(
         string memory id,
         string memory base64Data
@@ -81,7 +80,7 @@ contract nftFacet is modifiersFacet {
                             svg.prop(
                                 "style",
                                 // s.gradeOutlines[nft.grade].stopColor
-                                "stop-color:#ff00cc;stop-opacity:1"
+                                "stop-color:#afafaf;stop-opacity:1"
                             )
                         ),
                         svg.el(
@@ -91,7 +90,7 @@ contract nftFacet is modifiersFacet {
                                 svg.prop(
                                     "values",
                                     // s.gradeOutlines[nft.grade].animateColors
-                                    "#ff00cc;#3333ff;#ff00cc"
+                                    "#afafaf;#d2d4dc;#afafaf"
                                 ),
                                 svg.prop("dur", "2s"),
                                 // svg.prop(
@@ -108,14 +107,14 @@ contract nftFacet is modifiersFacet {
                             svg.prop("offset", "100%"),
                             svg.prop(
                                 "style",
-                                "stop-color:#3333ff;stop-opacity:1"
+                                "stop-color:#afafaf;stop-opacity:1"
                             )
                         ),
                         svg.el(
                             "animate",
                             string.concat(
                                 svg.prop("attributeName", "stop-color"),
-                                svg.prop("values", "#3333ff;#ff00cc;#3333ff"),
+                                svg.prop("values", "#afafaf;#d2d4dc;#afafaf"),
                                 svg.prop("dur", "2s"),
                                 svg.prop("repeatCount", "indefinite")
                             )
@@ -142,7 +141,7 @@ contract nftFacet is modifiersFacet {
                         "stop",
                         string.concat(
                             svg.prop("offset", "0%"),
-                            svg.prop("stop-color", "yellow")
+                            svg.prop("stop-color", "#fffff2")
                         ),
                         ""
                     ),
@@ -150,7 +149,7 @@ contract nftFacet is modifiersFacet {
                         "stop",
                         string.concat(
                             svg.prop("offset", "100%"),
-                            svg.prop("stop-color", "red")
+                            svg.prop("stop-color", "#f9f9f9")
                         ),
                         ""
                     )
@@ -196,27 +195,27 @@ contract nftFacet is modifiersFacet {
                                 // outline
                                 getImage(
                                     "_charOutline_xA0_image",
-                                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAACh0lEQVR4nO2bMW/TQBSAv5QgUTXJiLJ5YiFTl4xIwIDIws7KwL/I0N/AylrxC9igUsduDO2CGLohj21BQkI1Az3LNk6a+t57vqD3TVFsOXffvffOOZ8HJEY2nRfN786/nww0f1P14lWanWt2rHr86OwQgFcf3gJwcXCpKmJH68JVsum8mCzHTJbjsoNtI350dlgeb7uGVvuGWhdu4+rhb+BvZ58+fr3yvOef3wAwMmqeqYQqNyL+SYFSQF5vmmY6mNSEEMqT5biMhk/P3pfRsPNut3Z+VYB2PQCjmhA6cXFwySgfMsqH5YgHwvdNARaYzQ5QL26T5bh2bFWHtaMAjCVUCTNGwCLsV2GSDqnjEugpHW678bFOC3MJm975WYrobXY4Pf/Yes4sW5SfrUSY/4Fa1fkmljLUJWwy+uuYZQsG8PXn9a/9PP/yQ7RxN5jNDl0EBO7dHz56+eLJlWBzaqhGwl1TYB2zbMFo7wGn347F26wiQbLzVbTqhN8soRAJWlFQJUSEVDSISsim80Kz801m2UJEhMjKkub6nwWiNcEyCgLZdF7EDsJWF0Yp6dH5ZFEIbyO2UG51JEjhEohIhxTSoEnXtDCNhOsizZnUVMKgv8XttdhKSNNBt6FJsR4EutQFnx1wCYBLAFwC4BIAlwC4BMAlAC4BcAmASwAiJVSfCKVA1/Z0WnIPf05SXGrvss7o6YCAhFRSIqYdIpGQioiu/BfpEDsIUc8iUyiQEk+oxSKhj5SQ+k2Rpc/YzVldkNyjIL4/IXy22KQBCUoIaK5GS+9SAeXZQbpOaNUdky18EBcV2rtbTd+BCmwipDnqW/8iGMTdS2z93uY2NhHS16tAjuM4DvAHUwT634NLx7kAAAAASUVORK5CYII="
+                                    "data:image/svg;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAACh0lEQVR4nO2bMW/TQBSAv5QgUTXJiLJ5YiFTl4xIwIDIws7KwL/I0N/AylrxC9igUsduDO2CGLohj21BQkI1Az3LNk6a+t57vqD3TVFsOXffvffOOZ8HJEY2nRfN786/nww0f1P14lWanWt2rHr86OwQgFcf3gJwcXCpKmJH68JVsum8mCzHTJbjsoNtI350dlgeb7uGVvuGWhdu4+rhb+BvZ58+fr3yvOef3wAwMmqeqYQqNyL+SYFSQF5vmmY6mNSEEMqT5biMhk/P3pfRsPNut3Z+VYB2PQCjmhA6cXFwySgfMsqH5YgHwvdNARaYzQ5QL26T5bh2bFWHtaMAjCVUCTNGwCLsV2GSDqnjEugpHW678bFOC3MJm975WYrobXY4Pf/Yes4sW5SfrUSY/4Fa1fkmljLUJWwy+uuYZQsG8PXn9a/9PP/yQ7RxN5jNDl0EBO7dHz56+eLJlWBzaqhGwl1TYB2zbMFo7wGn347F26wiQbLzVbTqhN8soRAJWlFQJUSEVDSISsim80Kz801m2UJEhMjKkub6nwWiNcEyCgLZdF7EDsJWF0Yp6dH5ZFEIbyO2UG51JEjhEohIhxTSoEnXtDCNhOsizZnUVMKgv8XttdhKSNNBt6FJsR4EutQFnx1wCYBLAFwC4BIAlwC4BMAlAC4BcAmASwAiJVSfCKVA1/Z0WnIPf05SXGrvss7o6YCAhFRSIqYdIpGQioiu/BfpEDsIUc8iUyiQEk+oxSKhj5SQ+k2Rpc/YzVldkNyjIL4/IXy22KQBCUoIaK5GS+9SAeXZQbpOaNUdky18EBcV2rtbTd+BCmwipDnqW/8iGMTdS2z93uY2NhHS16tAjuM4DvAHUwT634NLx7kAAAAASUVORK5CYII="
                                 ),
                                 // arm
                                 getImage(
                                     "_charAmr_xA0_image",
-                                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAA5ElEQVR4nO3WsQ3CMBCF4UuWSCQKM4VbxmAYaLIALJAZaCmggYICUaWnQKIIJXWUHE2ygG1igv6vj+/07mxFBAAAAAAAAAAAAAAAAAAAAAAwbSa3anKrsfsIIY3dQCg+Q/EO4Re2wbcHrxDKXRmkiRAe9TVx/Xby1yHEALxDGLYhtsOlcg4j2CbEuBJDTd9BBAlhbmYhjolW2zmEJHV+h77GtSfnELRTbZtORETW20Ikkcb1LA/P1aboRETaphVVfY9a/Xiuliaztcmtmsze96fbYtQGeia3r/5HqYtRHwAA4O99AKTCO8eSAA8eAAAAAElFTkSuQmCC"
+                                    "data:image/svg;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAA5ElEQVR4nO3WsQ3CMBCF4UuWSCQKM4VbxmAYaLIALJAZaCmggYICUaWnQKIIJXWUHE2ygG1igv6vj+/07mxFBAAAAAAAAAAAAAAAAAAAAAAwbSa3anKrsfsIIY3dQCg+Q/EO4Re2wbcHrxDKXRmkiRAe9TVx/Xby1yHEALxDGLYhtsOlcg4j2CbEuBJDTd9BBAlhbmYhjolW2zmEJHV+h77GtSfnELRTbZtORETW20Ikkcb1LA/P1aboRETaphVVfY9a/Xiuliaztcmtmsze96fbYtQGeia3r/5HqYtRHwAA4O99AKTCO8eSAA8eAAAAAElFTkSuQmCC"
                                 ),
                                 // leg
                                 getImage(
                                     "_leg_xA0_image",
-                                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAfUlEQVR4nO3UsQ3CMBAF0B+moMsWjO0l0rEFXbaABksBhEik2ID0XmfrdKe74icAAAAAAAAAAAAAAAAAAPBPhl6DxuPpunxf5vPb2Vtq93Bo2fxZmUrKVJK8LlrV/2Vta12PUH1artfy1VeO8GscIR2DMXnMgbXB2DoUubsB+bMfnf2sWikAAAAASUVORK5CYII="
+                                    "data:image/svg;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAfUlEQVR4nO3UsQ3CMBAF0B+moMsWjO0l0rEFXbaABksBhEik2ID0XmfrdKe74icAAAAAAAAAAAAAAAAAAPBPhl6DxuPpunxf5vPb2Vtq93Bo2fxZmUrKVJK8LlrV/2Vta12PUH1artfy1VeO8GscIR2DMXnMgbXB2DoUubsB+bMfnf2sWikAAAAASUVORK5CYII="
                                 ),
                                 // eyes
                                 getImage(
                                     "_eyes_xA0_image",
-                                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAeklEQVR4nO3UsQ3CMBBA0YAYwhGFEUOYKvtLbEHHCiksU5kGAUpkRyneq665f648DAAAAAAAAADQy6FnPIZU6vx43lffatXZXAypxJBKlfNc/m99ynl+N2qz9VuPrYPfXM/TpntLnHofuIy3XTR+8ScAAAAAAAAAQFcvmTMvYSxs+bMAAAAASUVORK5CYII="
+                                    "data:image/svg;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAAeklEQVR4nO3UsQ3CMBBA0YAYwhGFEUOYKvtLbEHHCiksU5kGAUpkRyneq665f648DAAAAAAAAADQy6FnPIZU6vx43lffatXZXAypxJBKlfNc/m99ynl+N2qz9VuPrYPfXM/TpntLnHofuIy3XTR+8ScAAAAAAAAAQFcvmTMvYSxs+bMAAAAASUVORK5CYII="
                                 ),
                                 // mouth
                                 getImage(
                                     "_mouth_xA0_image",
-                                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAASElEQVR4nO3PoQ3AIAAEQLoFji26v2YLHFuARWBICk3InXzz/yEAAAAAAAAAAAC3S/FtK/lOz+nC0exwqfnXTQAAAAAAAABf6ftjBtraAp8tAAAAAElFTkSuQmCC"
+                                    "data:image/svg;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAAACXBIWXMAAAsSAAALEgHS3X78AAAASElEQVR4nO3PoQ3AIAAEQLoFji26v2YLHFuARWBICk3InXzz/yEAAAAAAAAAAAC3S/FtK/lOz+nC0exwqfnXTQAAAAAAAABf6ftjBtraAp8tAAAAAElFTkSuQmCC"
                                 )
                             )
                         ),
