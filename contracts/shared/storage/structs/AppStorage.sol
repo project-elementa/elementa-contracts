@@ -48,11 +48,31 @@ struct ElementaNFT {
     // uint[10] _gap;
     // uint[10] equipmentItem;
 }
+
+struct MysteryBox {
+    uint boxId;
+    uint uniqValue;
+}
 struct ElementaItem {
     EquipmentType equipmentType;
     uint itemId;
     string name;
-    bytes svgUri;
+    string svgUri;
+    string animateColors;
+    string stopColor;
+    string animateDuration;
+}
+
+struct ElementaToken {
+    uint phaseMaxSupply;
+    uint mintedSupply;
+}
+
+struct OraklVRF {
+    bytes32 keyHash;
+    uint64 accId;
+    uint32 callbackGasLimit;
+    uint32 numWords;
 }
 
 struct AppStorage {
@@ -68,8 +88,19 @@ struct AppStorage {
     mapping(uint => levelInfo) levelInfos;
     mapping(address => bool) isDelegateEOA;
     //
-    // equipmentType => nftId => item info
-    mapping(EquipmentType => mapping(uint => ElementaItem)) elementaItems;
-    // 
+    // items info
+    mapping(uint => ElementaItem) elementaItems;
+    //
+    // nftId => item info
+    mapping(uint => uint[10]) equipItems;
+    mapping(uint => ElementaToken) elementaToken;
+    // Orakl VRF
+    OraklVRF oraklVRF;
+
+    mapping(uint => MysteryBox) mysteryBoxes;
+
     
+    // SVGs
+    // mapping(uint => GradeOutline) gradeOutlines;
+    // mapping(uint => BackGround) backgrounds;
 }

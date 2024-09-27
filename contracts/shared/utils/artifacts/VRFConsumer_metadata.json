@@ -1,0 +1,269 @@
+{
+	"compiler": {
+		"version": "0.8.27+commit.40a35a09"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "coordinator",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_diamond",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "have",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "want",
+						"type": "address"
+					}
+				],
+				"name": "OnlyCoordinatorCanFulfill",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "keyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint64",
+						"name": "accId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint32",
+						"name": "callbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "numWords",
+						"type": "uint32"
+					}
+				],
+				"name": "VRFCall",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "diamondContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_diamondAddress",
+						"type": "address"
+					}
+				],
+				"name": "editDiamond",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "rawFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "keyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint64",
+						"name": "accId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint32",
+						"name": "callbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "numWords",
+						"type": "uint32"
+					}
+				],
+				"name": "requestRandomWords",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "sRandomWords",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"rawFulfillRandomWords(uint256,uint256[])": {
+					"params": {
+						"randomWords": "the VRF output expanded to the requested number of words",
+						"requestId": "The Id initially returned by requestRandomWords"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"rawFulfillRandomWords(uint256,uint256[])": {
+					"notice": "rawFulfillRandomWords is called by VRFCoordinator when itreceives a valid VRF proof. rawFulfillRandomWords then callsfulfillRandomWords, after validating the origin of the call"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/shared/utils/oraklVRF.sol": "VRFConsumer"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@bisonai/orakl-contracts/v0.1/src/VRFConsumerBase.sol": {
+			"keccak256": "0x8f25cf557237f53059663038b409a6a09210710ebc86bed6f416d418c02f6425",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7d718c475fd80a6414309aa7cccfd03ee7ae46c4370fb57416bcfc42e4aa631b",
+				"dweb:/ipfs/QmZDNsVDNwu7LvQHAwGGjiEbYybmFPAz9Q3nGWhGVsvoQE"
+			]
+		},
+		"@bisonai/orakl-contracts/v0.1/src/interfaces/ICoordinatorBase.sol": {
+			"keccak256": "0x6de51eefb1bee236f7a8144f87c06b804f11375672f41543926a960b9d50f8b5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://970f39597659cd9e48adb786bb51a23b8d34f59ccc3ce5ab66a1cf2035d3e7b6",
+				"dweb:/ipfs/QmRZ3GJBr8jNRENiwER4MB7HBsHG1FPMub1Zwq2jcwhkSk"
+			]
+		},
+		"@bisonai/orakl-contracts/v0.1/src/interfaces/IVRFCoordinator.sol": {
+			"keccak256": "0x6b0474d5d4482ff306990782da936d88f2ed1d251f9105c2f3f988699a4d42f5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c7c7b853590d519af1e8f31198e4943e9c9e8e4c13b5b50f945efdac66365730",
+				"dweb:/ipfs/QmVKHJRCN2wuadFww2TnKro3GJR5FUsp9NDeZ3378PTeUQ"
+			]
+		},
+		"@bisonai/orakl-contracts/v0.1/src/interfaces/IVRFCoordinatorBase.sol": {
+			"keccak256": "0x0d8bd0618a35c5cb1424df6f2abbb19c820560a829f5c80997cd7b9e086cbbc1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://586d8f798d47d2b78f26960b57d2413010e33417e407cf261d6065f3d0e1cc00",
+				"dweb:/ipfs/QmSK4u7tii7fTAVT7hW4LMs4Z2pwNpUcXMZuNf9QsjyW3f"
+			]
+		},
+		"contracts/shared/utils/oraklVRF.sol": {
+			"keccak256": "0x31983c4f155c566e342c3b5bfab032aaa6e766bbe91ea7c025e646362ccb56f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ae06dc15b9012fafd27a0ddeb50467b7ce4df166f1f8051508c817a553b7efc5",
+				"dweb:/ipfs/QmdTpm7ZD38ut5Z2xRe6s76J1YDn78MB8y3PzePemyaSDH"
+			]
+		}
+	},
+	"version": 1
+}

@@ -65,6 +65,12 @@ contract adminFacet is modifiersFacet {
         s.globalUserIndex++;
     }
 
+    function admin_vrfSettings(bytes32 _keyHash, uint64 _accId, uint32 _callbackGasLimit) external onlyAdmin {
+        s.oraklVRF.keyHash = _keyHash;
+        s.oraklVRF.accId = _accId;
+        s.oraklVRF.callbackGasLimit = _callbackGasLimit;
+    }
+
     // function admin_registerWalletUser(address _delegateEOA) external onlyAdmin {
     //     string memory userId = lower(Strings.toHexString(msg.sender));
 
@@ -78,28 +84,46 @@ contract adminFacet is modifiersFacet {
     //     s.globalUserIndex++;
     // }
 
-    function admin_setGlobalUserIndex(uint _index) external onlyAdmin {
-        s.globalUserIndex = _index;
-    }
+    // function admin_setBackgroundSvg(
+    //     uint _class,
+    //     string memory _animateColors,
+    //     string memory _stopColor,
+    //     string memory _animateDuration
+    // ) external onlyAdmin {
+    //     s.backgrounds[_class].animateColors = _animateColors;
+    //     s.backgrounds[_class].stopColor = _stopColor;
+    //     s.backgrounds[_class].animateDuration = _animateDuration;
+    // }
 
-    function admin_setEquipment(
-        EquipmentType _itemType,
-        uint _itemId,
-        string memory _name,
-        bytes memory _svgUri
-    ) external onlyAdmin {
-        s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
-        s.elementaItems[_itemType][_itemId].itemId = _itemId;
-        s.elementaItems[_itemType][_itemId].name = _name;
-        s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
-    }
+    // function admin_setTierOutlineSvg(
+    //     uint _class,
+    //     string memory _animateColors,
+    //     string memory _stopColor,
+    //     string memory _animateDuration
+    // ) external onlyAdmin {
+    //     s.tierOutlines[_class].animateColors = _animateColors;
+    //     s.tierOutlines[_class].stopColor = _stopColor;
+    //     s.tierOutlines[_class].animateDuration = _animateDuration;
+    // }
 
-    function admin_getEquipment(
-        EquipmentType _itemType,
-        uint _itemId
-    ) external view returns (ElementaItem memory) {
-        return s.elementaItems[_itemType][_itemId];
-    }
+    // function admin_setEquipment(
+    //     EquipmentType _itemType,
+    //     uint _itemId,
+    //     string memory _name,
+    //     bytes memory _svgUri
+    // ) external onlyAdmin {
+    //     s.elementaItems[_itemType][_itemId].equipmentType = _itemType;
+    //     s.elementaItems[_itemType][_itemId].itemId = _itemId;
+    //     s.elementaItems[_itemType][_itemId].name = _name;
+    //     s.elementaItems[_itemType][_itemId].svgUri = _svgUri;
+    // }
+
+    // function admin_getEquipment(
+    //     EquipmentType _itemType,
+    //     uint _itemId
+    // ) external view returns (ElementaItem memory) {
+    //     return s.elementaItems[_itemType][_itemId];
+    // }
 
     //
     //
