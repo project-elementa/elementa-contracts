@@ -1,5 +1,9 @@
 # The Elementa
 
+The repository has changed.
+
+- https://github.com/OriginForge/elementa-contracts
+
 Elementa uses NFTs merged from dNFTs and SBTs to support the creation of
 games and communities using merged NFTs from dNFT and SBT.
 
